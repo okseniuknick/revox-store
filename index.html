@@ -55,18 +55,22 @@ document.getElementById('orderForm').addEventListener('submit', async function(e
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)
-    });
-    const result=await response.json().catch(()=>({}));
-    if(!response.ok || !result.ok) throw new Error(result.error||'Не вдалося надіслати замовлення');
-    status.textContent='Дякуємо! Замовлення надіслано. Ми зв’яжемося з вами для підтвердження.';
+    })
+    const result = await response.json();
+
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || 'Помилка надсилання');
+    }
+
+    status.textContent = 'Дякуємо! Замовлення надіслано. Ми зв’яжемося з вами!';
     form.reset();
-    form.elements.quantity.value='1';
-  }catch(error){
-    status.textContent='Не вдалося надіслати замовлення. Спробуйте ще раз або зв’яжіться з нами пізніше.';
-  }finally{
-    button.disabled=false;
-    button.textContent='ОФОРМИТИ ЗАЯВКУ';
+
+  } catch (error) {
+    status.textContent = 'Не вдалося надіслати замовлення. Спробуйте ще раз.';
+  } finally {
+    button.disabled = false;
   }
 });
 </script>
-</body></html>
+</body>
+</html>
