@@ -62,7 +62,7 @@ document.getElementById('orderForm').addEventListener('submit', async function(e
       throw new Error(result.error || 'Помилка надсилання');
     }
 
-    status.textContent = 'Дякуємо! Замовлення надіслано. Ми зв’яжемося з вами!';
+    status.textContent = '✅ Дякуємо за замовлення! Ваше замовлення успішно прийнято. Наш оператор зв’яжеться з вами найближчим часом.';
     form.reset();
 
   } catch (error) {
